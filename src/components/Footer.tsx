@@ -17,25 +17,34 @@ export default function Footer() {
             <div className="text-4xl font-black tracking-tight mb-6">
               FIA<span className="text-primary">.</span>
             </div>
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-zinc-500 leading-relaxed">
               Future Intelligence Agency - Bridging the gap between theory and futuristic implementation.
             </p>
           </div>
 
           {/* Links & Copyright */}
           <div className="flex flex-col items-start md:items-end text-left md:text-right">
-            <div className="flex gap-6 mb-8">
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">
+            <div className="flex flex-wrap gap-6 mb-8">
+              <a
+                href="#"
+                className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
+              >
                 Privacy Policy
               </a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
+              >
                 Terms of Service
               </a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
+              >
                 Contact Us
               </a>
             </div>
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-zinc-600 leading-relaxed">
               &copy; 2026 Future Intelligence Agency. All rights reserved.
               <br />
               Powered by Hack2Skill.
