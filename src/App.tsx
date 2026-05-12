@@ -1,4 +1,6 @@
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
 import Footer from './components/Footer';
 
 function App() {
@@ -18,13 +20,10 @@ function App() {
       <Navbar />
 
       <main className="relative z-10">
-        {/* Sections will be added in later phases — placeholders ensure smooth scrolling */}
-        <section id="hero" className="min-h-screen flex items-center justify-center">
-          <p className="text-2xl text-text-dim">Hero Section (coming in Phase 2)</p>
-        </section>
-        <section id="about" className="min-h-screen flex items-center justify-center">
-          <p className="text-2xl text-text-dim">About Section (coming in Phase 2)</p>
-        </section>
+        <Hero />
+        <About />
+
+        {/* Placeholder sections for remaining phases */}
         <section id="how-to-participate" className="min-h-screen flex items-center justify-center">
           <p className="text-2xl text-text-dim">How to Participate (Phase 3)</p>
         </section>
