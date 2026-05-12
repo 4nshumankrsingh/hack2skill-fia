@@ -1,6 +1,10 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import HowToParticipate from './components/HowToParticipate';
+import Challenges from './components/Challenges';
+import Timeline from './components/Timeline';
+import WhyParticipate from './components/WhyParticipate';
 import Footer from './components/Footer';
 
 function App() {
@@ -22,20 +26,12 @@ function App() {
       <main className="relative z-10">
         <Hero />
         <About />
+        <HowToParticipate />
+        <Challenges />
+        <Timeline />
+        <WhyParticipate />
 
-        {/* Placeholder sections for remaining phases */}
-        <section id="how-to-participate" className="min-h-screen flex items-center justify-center">
-          <p className="text-2xl text-text-dim">How to Participate (Phase 3)</p>
-        </section>
-        <section id="challenges" className="min-h-screen flex items-center justify-center">
-          <p className="text-2xl text-text-dim">Challenges (Phase 3)</p>
-        </section>
-        <section id="timeline" className="min-h-screen flex items-center justify-center">
-          <p className="text-2xl text-text-dim">Timeline (Phase 3)</p>
-        </section>
-        <section id="why-participate" className="min-h-screen flex items-center justify-center">
-          <p className="text-2xl text-text-dim">Why Participate (Phase 3)</p>
-        </section>
+        {/* Placeholder sections for Phase 4 */}
         <section id="rewards" className="min-h-screen flex items-center justify-center">
           <p className="text-2xl text-text-dim">Rewards (Phase 4)</p>
         </section>
