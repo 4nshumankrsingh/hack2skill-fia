@@ -1,122 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="relative min-h-screen overflow-x-hidden bg-[#0a0612] text-white font-manrope">
+      {/* Fixed background glows */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 left-[-10%] w-1/2 h-1/2 bg-[#4c1d95]/20 blur-[120px] hidden lg:block" />
+        <div className="absolute top-[80vh] left-1/2 -translate-x-1/2 w-[70%] h-[40%] bg-[#5b21b6]/20 blur-[150px]" />
+        <div className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-[#5b21b6]/15 blur-[120px] hidden lg:block" />
+        <div className="absolute top-1/2 left-[-10%] w-1/2 h-1/2 bg-[#4c1d95]/15 blur-[120px] hidden lg:block" />
+        <div className="absolute top-3/4 right-0 w-1/2 h-1/2 bg-[#5b21b6]/20 blur-[120px] hidden lg:block" />
+        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[60%] h-[40%] bg-[#4c1d95]/20 blur-[150px] hidden lg:block" />
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-noise"></div>
+      </div>
 
-      <div className="ticks"></div>
+      <Navbar />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <main className="relative z-10">
+        {/* Sections will be added in later phases — placeholders ensure smooth scrolling */}
+        <section id="hero" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">Hero Section (coming in Phase 2)</p>
+        </section>
+        <section id="about" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">About Section (coming in Phase 2)</p>
+        </section>
+        <section id="how-to-participate" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">How to Participate (Phase 3)</p>
+        </section>
+        <section id="challenges" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">Challenges (Phase 3)</p>
+        </section>
+        <section id="timeline" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">Timeline (Phase 3)</p>
+        </section>
+        <section id="why-participate" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">Why Participate (Phase 3)</p>
+        </section>
+        <section id="rewards" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">Rewards (Phase 4)</p>
+        </section>
+        <section id="faq" className="min-h-screen flex items-center justify-center">
+          <p className="text-2xl text-text-dim">FAQ (Phase 4)</p>
+        </section>
+      </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
