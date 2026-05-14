@@ -72,7 +72,6 @@ export default function About() {
           {categories.map((cat, index) => (
             <Reveal key={index} delay={index * 0.1}>
               <div className="relative p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-primary/50 transition-colors cursor-default flex items-center justify-center min-h-[140px] overflow-visible">
-                {/* Larger top-left glow circle - only 1/3 inside the box */}
                 <div
                   className="absolute pointer-events-none"
                   style={{

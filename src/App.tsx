@@ -2,13 +2,13 @@ import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import WhatIsHackathon from './components/WhatIsHackathon';
+import WhyParticipate from './components/WhyParticipate';
 import HowToParticipate from './components/HowToParticipate';
 import Challenges from './components/Challenges';
 import Timeline from './components/Timeline';
-import WhyParticipate from './components/WhyParticipate';
 import Footer from './components/Footer';
 
-// Lazy load sections below the fold for better initial load performance
 const Rewards = lazy(() => import('./components/Rewards'));
 const FAQ = lazy(() => import('./components/FAQ'));
 
@@ -39,10 +39,11 @@ function App() {
       <main className="relative z-10">
         <Hero />
         <About />
+        <WhatIsHackathon />
+        <WhyParticipate />
         <HowToParticipate />
         <Challenges />
         <Timeline />
-        <WhyParticipate />
 
         <Suspense fallback={<SectionFallback />}>
           <Rewards />
