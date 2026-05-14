@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import SectionHeading from './ui/SectionHeading';
 import { challenges } from '../data/challenges';
 
 export default function Challenges() {
@@ -14,11 +13,10 @@ export default function Challenges() {
   return (
     <section id="challenges" className="relative py-24 bg-transparent z-10">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading
-          label="Challenges"
-          title=""
-          className="mb-24"
-        />
+        {/* Purple section label */}
+        <p className="text-center text-sm font-bold uppercase tracking-[0.4em] text-[#a855f7] mb-24">
+          Challenges
+        </p>
 
         <div className="border-t border-white/10">
           {challenges.map((challenge) => {
@@ -32,19 +30,11 @@ export default function Challenges() {
                 }`}
                 onClick={() => toggleChallenge(challenge.id)}
               >
-                <div className="flex flex-col p-5 gap-3 md:hidden">
-                  {/* Header */}
+                {/* ============ MOBILE LAYOUT ============ */}
+                <div className="flex flex-col p-5 md:hidden">
+                  {/* Header - ID and arrow */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-text-dim">[{challenge.id}]</span>
-                      <h3
-                        className={`text-[15px] font-bold transition-colors ${
-                          isActive ? 'text-primary-light' : 'text-white'
-                        }`}
-                      >
-                        {challenge.title}
-                      </h3>
-                    </div>
+                    <span className="text-xs font-mono text-text-dim">[{challenge.id}]</span>
                     <motion.span
                       animate={{ rotate: isActive ? 45 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -57,41 +47,53 @@ export default function Challenges() {
                     </motion.span>
                   </div>
 
-                  {/* Expandable Body */}
-                  <AnimatePresence initial={false}>
-                    {isActive && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden flex flex-col gap-4"
-                      >
-                        <div className="relative w-full h-[200px] border border-white/10 overflow-hidden shadow-2xl">
-                          <img
-                            src={challenge.img}
-                            alt={`Challenge ${challenge.id}`}
-                            className="absolute inset-0 w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                        <p className="text-sm text-text-muted leading-relaxed">
-                          {challenge.desc}
-                        </p>
-                        <div className="relative w-fit mt-2">
-                          <span className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-white/60" />
-                          <span className="absolute -top-1 -right-1 w-2 h-2 border-t border-r border-white/60" />
-                          <span className="absolute -bottom-1 -left-1 w-2 h-2 border-b border-l border-white/60" />
-                          <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-white/60" />
-                          <button className="px-8 py-2.5 bg-gradient-to-r from-primary-deep to-[#8b5cf6] text-white text-[13px] font-medium hover:brightness-110 transition-all">
-                            Learn More
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* Description - ALWAYS VISIBLE */}
+                  <p className="text-sm text-text-muted leading-relaxed mt-3">
+                    {challenge.desc}
+                  </p>
+
+                  {/* Learn More - appears on click */}
+                  {isActive && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden flex flex-col gap-4 mt-3"
+                    >
+                      <div className="relative w-full h-[200px] border border-white/10 overflow-hidden shadow-2xl">
+                        <img
+                          src={challenge.img}
+                          alt={`Challenge ${challenge.id}`}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      {/* Learn More button with visible square brackets */}
+                      <div className="relative w-fit mt-2 p-1">
+                        <svg
+                          className="absolute inset-0 w-full h-full pointer-events-none"
+                          viewBox="0 0 100 100"
+                          preserveAspectRatio="none"
+                          fill="none"
+                          stroke="white"
+                          strokeWidth="3"
+                          strokeLinecap="square"
+                        >
+                          <path d="M 10 0 L 0 0 L 0 10" />
+                          <path d="M 90 0 L 100 0 L 100 10" />
+                          <path d="M 0 90 L 0 100 L 10 100" />
+                          <path d="M 100 90 L 100 100 L 90 100" />
+                        </svg>
+                        <button className="px-8 py-2.5 bg-gradient-to-r from-primary-deep to-[#8b5cf6] text-white text-[13px] font-medium hover:brightness-110 transition-all">
+                          Learn More
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
 
+                {/* ============ DESKTOP LAYOUT ============ */}
                 <div className="hidden md:flex flex-row items-start p-8 gap-12">
                   {/* Number */}
                   <div
@@ -118,40 +120,42 @@ export default function Challenges() {
                     />
                   </div>
 
-                  {/* Content */}
+                  {/* Content - Description ALWAYS VISIBLE */}
                   <div className="flex-grow pt-1">
-                    <h3
-                      className={`text-xl font-bold mb-3 transition-colors ${
-                        isActive ? 'text-primary-light' : 'text-white'
-                      }`}
-                    >
-                      {challenge.title}
-                    </h3>
+                    <p className="text-[15px] text-text-muted leading-relaxed max-w-xl">
+                      {challenge.desc}
+                    </p>
 
-                    <AnimatePresence initial={false}>
-                      {isActive && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: 'easeInOut' }}
-                          className="overflow-hidden flex flex-col gap-6"
-                        >
-                          <p className="text-[15px] text-text-muted leading-relaxed max-w-xl">
-                            {challenge.desc}
-                          </p>
-                          <div className="relative w-fit">
-                            <span className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-white/60" />
-                            <span className="absolute -top-1 -right-1 w-2 h-2 border-t border-r border-white/60" />
-                            <span className="absolute -bottom-1 -left-1 w-2 h-2 border-b border-l border-white/60" />
-                            <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-white/60" />
-                            <button className="px-8 py-3 bg-gradient-to-r from-primary-deep to-[#8b5cf6] text-white font-bold hover:brightness-110 transition-all shadow-[0_10px_15px_rgba(88,28,135,0.2)]">
-                              Learn More
-                            </button>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {/* Learn More - appears on click */}
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden mt-6"
+                      >
+                        <div className="relative w-fit p-1">
+                          <svg
+                            className="absolute inset-0 w-full h-full pointer-events-none"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="none"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="3"
+                            strokeLinecap="square"
+                          >
+                            <path d="M 10 0 L 0 0 L 0 10" />
+                            <path d="M 90 0 L 100 0 L 100 10" />
+                            <path d="M 0 90 L 0 100 L 10 100" />
+                            <path d="M 100 90 L 100 100 L 90 100" />
+                          </svg>
+                          <button className="px-8 py-3 bg-gradient-to-r from-primary-deep to-[#8b5cf6] text-white font-bold hover:brightness-110 transition-all shadow-[0_10px_15px_rgba(88,28,135,0.2)]">
+                            Learn More
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
 
                   {/* Arrow */}

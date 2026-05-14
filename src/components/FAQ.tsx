@@ -6,14 +6,20 @@ export default function FAQ() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <section id="faq" className="relative px-5 pb-20 md:pb-96 min-h-screen bg-transparent z-10">
-      {/* Background brain glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1000px] bg-[radial-gradient(ellipse_100%_50%_at_center,rgba(76,29,149,1)_0%,transparent_70%)] opacity-20 z-0 pointer-events-none blur-[90px]" />
-
-      {/* Background brain image */}
+    <section id="faq" className="relative px-5 pb-20 md:pb-24 min-h-screen z-10">
       <div
-        className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[700px] z-0 pointer-events-none mix-blend-screen"
+        className="absolute left-1/2 -translate-x-1/2 w-full h-[1000px] z-0 pointer-events-none opacity-20 blur-[90px]"
         style={{
+          top: '80px',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(ellipse 100% 50% at center, rgba(76,29,149,1) 0%, transparent 70%)',
+        }}
+      />
+      <div
+        className="absolute left-1/2 w-full h-[700px] z-0 pointer-events-none mix-blend-screen"
+        style={{
+          top: '80px',
+          transform: 'translate(-50%, -50%)',
           maskImage: 'radial-gradient(ellipse 100% 40% at center, black 5%, transparent 80%)',
           WebkitMaskImage: 'radial-gradient(ellipse 100% 40% at center, black 5%, transparent 80%)',
         }}
@@ -25,6 +31,16 @@ export default function FAQ() {
           loading="lazy"
         />
       </div>
+
+      {/* Black fade overlay — fades brain into black background */}
+      <div
+        className="absolute left-0 w-full pointer-events-none z-[1]"
+        style={{
+          top: '350px',
+          height: '600px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(10, 6, 18, 0.85) 35%, #0a0612 70%)',
+        }}
+      />
 
       {/* FAQ Content */}
       <div className="max-w-4xl mx-auto relative z-10">
@@ -40,7 +56,6 @@ export default function FAQ() {
                 onMouseEnter={() => setHoveredId(faq.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* ============ MOBILE LAYOUT ============ */}
                 <div className="flex flex-col gap-3 md:hidden">
                   <div className="flex items-start gap-3">
                     <div
@@ -64,10 +79,7 @@ export default function FAQ() {
                     {faq.answer}
                   </p>
                 </div>
-
-                {/* ============ DESKTOP LAYOUT ============ */}
                 <div className="hidden md:grid md:grid-cols-[60px_1fr_1.5fr] md:items-start">
-                  {/* Badge */}
                   <div
                     className={`w-8 h-8 flex items-center justify-center text-[12px] font-bold transition-colors duration-200 ${
                       hoveredId === faq.id
@@ -78,7 +90,6 @@ export default function FAQ() {
                     {faq.id}
                   </div>
 
-                  {/* Question */}
                   <div className="px-10">
                     <h3
                       className={`text-[17px] font-medium leading-tight transition-colors duration-200 ${
@@ -88,8 +99,6 @@ export default function FAQ() {
                       {faq.question}
                     </h3>
                   </div>
-
-                  {/* Answer */}
                   <div>
                     <p className="text-[15px] text-white leading-relaxed max-w-xl">
                       {faq.answer}
@@ -100,16 +109,6 @@ export default function FAQ() {
             </Reveal>
           ))}
         </div>
-      </div>
-
-      {/* Footer decorative image */}
-      <div className="absolute bottom-0 left-0 w-full h-[300px] md:h-[600px] pointer-events-none z-0">
-        <img
-          src="/gallery/footer-artboard.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-contain object-bottom"
-          loading="lazy"
-        />
       </div>
     </section>
   );

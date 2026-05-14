@@ -1,5 +1,4 @@
 import Reveal from './ui/Reveal';
-import SectionHeading from './ui/SectionHeading';
 
 const rewards = [
   {
@@ -14,12 +13,11 @@ const rewards = [
 
 export default function Rewards() {
   return (
-    <section id="rewards" className="relative py-16 md:py-24 bg-transparent z-10">
+    <section id="rewards" className="relative pt-8 pb-16 md:pt-12 md:pb-24 bg-transparent z-10">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading
-          label="Rewards and Benefits"
-          title=""
-        />
+        <p className="text-center text-sm font-bold uppercase tracking-[0.4em] text-[#a855f7] mb-16">
+          Rewards and Benefits
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-2xl md:max-w-none mx-auto mt-12">
           {rewards.map((reward, index) => (
