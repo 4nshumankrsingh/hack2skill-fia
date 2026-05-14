@@ -62,26 +62,38 @@ export default function Hero() {
             </p>
           </Reveal>
 
-{/* CTA Button - Mobile */}
-<Reveal delay={0.3}>
-  <div className="relative mt-6 mb-8">
-    {/* Corner brackets */}
-    <span className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
-    <span className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
-    <a
-      href="#register"
-      className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white whitespace-nowrap transition-all duration-300 hover:scale-[1.02]"
-      style={{
-        background: 'linear-gradient(131.57deg, rgba(124, 58, 237, 0.74) 2.28%, rgba(167, 139, 250, 0.74) 53.69%, rgba(238, 231, 251, 0.74) 95.92%)',
-        borderRadius: '2px',
-        color: '#FFFFFF',
-        textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
-      }}
-    >
-      Register Now
-    </a>
-  </div>
-</Reveal>
+          {/* CTA Button - Mobile */}
+          <Reveal delay={0.3}>
+            <div className="relative mt-6 mb-8 p-[6px]">
+              {/* Square brackets SVG */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                fill="none"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="square"
+              >
+                <path d="M 10 0 L 0 0 L 0 10" />
+                <path d="M 90 0 L 100 0 L 100 10" />
+                <path d="M 0 90 L 0 100 L 10 100" />
+                <path d="M 100 90 L 100 100 L 90 100" />
+              </svg>
+              <a
+                href="#register"
+                className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white whitespace-nowrap transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  background: 'linear-gradient(131.57deg, rgba(124, 58, 237, 0.74) 2.28%, rgba(167, 139, 250, 0.74) 53.69%, rgba(238, 231, 251, 0.74) 95.92%)',
+                  borderRadius: '2px',
+                  color: '#FFFFFF',
+                  textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
+                }}
+              >
+                Register Now
+              </a>
+            </div>
+          </Reveal>
         </div>
 
         {/* ============ DESKTOP LAYOUT ============ */}
@@ -114,31 +126,43 @@ export default function Hero() {
             </Reveal>
           </div>
 
-{/* Bottom Right: CTA - Desktop */}
-<div className="absolute bottom-20 right-12 z-50">
-  <Reveal delay={0.2}>
-    <div className="relative">
-      {/* Corner brackets */}
-      <span className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
-      <span className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
-      <a
-        href="#register"
-        className="relative inline-flex items-center justify-center text-white font-bold whitespace-nowrap transition-all duration-300 hover:scale-[1.02]"
-        style={{
-          background: 'linear-gradient(131.57deg, rgba(124, 58, 237, 0.74) 2.28%, rgba(167, 139, 250, 0.74) 53.69%, rgba(238, 231, 251, 0.74) 95.92%)',
-          borderRadius: '2px',
-          width: '262px',
-          height: '85px',
-          fontSize: '1.5rem',
-          color: '#FFFFFF',
-          textShadow: '0 0 15px rgba(255, 255, 255, 0.6)',
-        }}
-      >
-        Register Now
-      </a>
-    </div>
-  </Reveal>
-</div>
+          {/* Bottom Right: CTA - Desktop */}
+          <div className="absolute bottom-20 right-12 z-50">
+            <Reveal delay={0.2}>
+              <div className="relative p-[8px]">
+                {/* Square brackets SVG */}
+                <svg
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2.5"
+                  strokeLinecap="square"
+                >
+                  <path d="M 10 0 L 0 0 L 0 10" />
+                  <path d="M 90 0 L 100 0 L 100 10" />
+                  <path d="M 0 90 L 0 100 L 10 100" />
+                  <path d="M 100 90 L 100 100 L 90 100" />
+                </svg>
+                <a
+                  href="#register"
+                  className="relative inline-flex items-center justify-center text-white font-bold whitespace-nowrap transition-all duration-300 hover:scale-[1.02]"
+                  style={{
+                    background: 'linear-gradient(131.57deg, rgba(124, 58, 237, 0.74) 2.28%, rgba(167, 139, 250, 0.74) 53.69%, rgba(238, 231, 251, 0.74) 95.92%)',
+                    borderRadius: '2px',
+                    width: '262px',
+                    height: '85px',
+                    fontSize: '1.5rem',
+                    color: '#FFFFFF',
+                    textShadow: '0 0 15px rgba(255, 255, 255, 0.6)',
+                  }}
+                >
+                  Register Now
+                </a>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
