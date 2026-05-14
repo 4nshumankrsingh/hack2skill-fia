@@ -15,12 +15,16 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover opacity-80"
           loading="eager"
         />
+        {/* Overlay gradients */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0a0612] to-transparent z-10" />
       </div>
+
+      {/* Hero Glow (Desktop) */}
       <div className="hidden lg:block absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/30 blur-[150px] rounded-full z-[-1] animate-pulse-glow opacity-50" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
+        {/* ============ MOBILE LAYOUT ============ */}
         <div className="flex flex-col items-center lg:hidden">
           {/* Title */}
           <Reveal>
@@ -58,21 +62,29 @@ export default function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.3}>
-            <div className="relative mt-6 mb-8">
-              {/* Corner brackets */}
-              <span className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
-              <span className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
-              <a
-                href="#register"
-                className="block bg-white/5 backdrop-blur-2xl border border-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition-colors shadow-[0_0_50px_rgba(168,85,247,0.2)] whitespace-nowrap"
-              >
-                Register Now
-              </a>
-            </div>
-          </Reveal>
+{/* CTA Button - Mobile */}
+<Reveal delay={0.3}>
+  <div className="relative mt-6 mb-8">
+    {/* Corner brackets */}
+    <span className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
+    <span className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
+    <a
+      href="#register"
+      className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white whitespace-nowrap transition-all duration-300 hover:scale-[1.02]"
+      style={{
+        background: 'linear-gradient(131.57deg, rgba(124, 58, 237, 0.74) 2.28%, rgba(167, 139, 250, 0.74) 53.69%, rgba(238, 231, 251, 0.74) 95.92%)',
+        borderRadius: '2px',
+        color: '#FFFFFF',
+        textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
+      }}
+    >
+      Register Now
+    </a>
+  </div>
+</Reveal>
         </div>
 
+        {/* ============ DESKTOP LAYOUT ============ */}
         <div className="hidden lg:flex items-center justify-between w-full h-full">
           {/* Left: Character + Tagline */}
           <div className="relative z-30 pointer-events-none translate-y-10">
@@ -102,20 +114,31 @@ export default function Hero() {
             </Reveal>
           </div>
 
-          <div className="absolute bottom-20 right-12 z-50">
-            <Reveal delay={0.2}>
-              <div className="relative">
-                <span className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
-                <span className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
-                <a
-                  href="#register"
-                  className="block bg-white/5 backdrop-blur-2xl border border-white/10 px-10 py-5 text-2xl font-bold text-white hover:bg-white/15 transition-colors shadow-[0_0_50px_rgba(168,85,247,0.2)] whitespace-nowrap"
-                >
-                  Register Now
-                </a>
-              </div>
-            </Reveal>
-          </div>
+{/* Bottom Right: CTA - Desktop */}
+<div className="absolute bottom-20 right-12 z-50">
+  <Reveal delay={0.2}>
+    <div className="relative">
+      {/* Corner brackets */}
+      <span className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
+      <span className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
+      <a
+        href="#register"
+        className="relative inline-flex items-center justify-center text-white font-bold whitespace-nowrap transition-all duration-300 hover:scale-[1.02]"
+        style={{
+          background: 'linear-gradient(131.57deg, rgba(124, 58, 237, 0.74) 2.28%, rgba(167, 139, 250, 0.74) 53.69%, rgba(238, 231, 251, 0.74) 95.92%)',
+          borderRadius: '2px',
+          width: '262px',
+          height: '85px',
+          fontSize: '1.5rem',
+          color: '#FFFFFF',
+          textShadow: '0 0 15px rgba(255, 255, 255, 0.6)',
+        }}
+      >
+        Register Now
+      </a>
+    </div>
+  </Reveal>
+</div>
         </div>
       </div>
     </section>
