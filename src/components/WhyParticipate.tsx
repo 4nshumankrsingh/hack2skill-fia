@@ -117,16 +117,16 @@ export default function WhyParticipate() {
         Why Participate?
       </h2>
 
-      {/* ───────── MOBILE LAYOUT ───────── */}
+      {/* MOBILE */}
       <div className="flex flex-col items-center w-full gap-0 lg:hidden">
         <div className="w-full flex flex-col">
           {benefits.slice(0, 2).map((benefit, index) => (
             <div key={index} className="bg-primary p-6 border-b border-white/10">
-              <h3 className="text-lg font-black uppercase leading-tight mb-1">
+              <h3 className="text-lg font-black leading-tight mb-1">
                 {benefit.title}
               </h3>
 
-              <p className="text-white/85 text-xs leading-relaxed font-medium">
+              <p className="text-white/85 text-sm leading-relaxed font-medium">
                 {benefit.description}
               </p>
             </div>
@@ -143,11 +143,11 @@ export default function WhyParticipate() {
                 index === 0 ? 'border-b border-white/10' : ''
               }`}
             >
-              <h3 className="text-lg font-black uppercase leading-tight mb-1">
+              <h3 className="text-lg font-black leading-tight mb-1">
                 {benefit.title}
               </h3>
 
-              <p className="text-white/85 text-xs leading-relaxed font-medium">
+              <p className="text-white/85 text-sm leading-relaxed font-medium">
                 {benefit.description}
               </p>
             </div>
@@ -155,65 +155,74 @@ export default function WhyParticipate() {
         </div>
       </div>
 
-      {/* ───────── DESKTOP LAYOUT ───────── */}
-      <div className="hidden lg:grid w-full grid-cols-[1fr_auto_1fr] items-stretch relative">
-        {/* LEFT PANEL */}
-        <Reveal>
-          <div className="relative bg-primary flex flex-col justify-center gap-16 py-16 pl-14 pr-20 text-right h-full">
-            {benefits.slice(0, 2).map((benefit, index) => (
-              <div key={index} className="relative">
-                {/* RIGHT SIDE CONNECTOR */}
-                <div className="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 flex items-center z-20">
-                  {/* white strip */}
-                  <div className="w-4 h-14 bg-white" />
-
-                  {/* purple extension */}
-                  <div className="w-16 h-14 bg-primary" />
-                </div>
-
-                <h3 className="text-[2.15rem] font-black uppercase leading-tight mb-3">
-                  {benefit.title}
-                </h3>
-
-                <p className="text-white/90 text-sm leading-relaxed font-medium ml-auto max-w-[260px]">
-                  {benefit.description}
-                </p>
+      {/* DESKTOP - Cards now at far edges */}
+      <div className="hidden lg:flex w-full justify-between items-stretch relative">
+        {/* LEFT CARD - positioned at left edge */}
+        <div className="relative w-[420px] flex-shrink-0">
+          <Reveal>
+            <div className="relative bg-primary flex flex-col justify-center gap-12 py-12 pl-8 pr-12 text-right h-[390px]">
+              {/* TOP connector */}
+              <div className="absolute right-0 top-[35%] translate-x-full -translate-y-1/2 flex items-center pointer-events-none z-30">
+                <div className="w-4 h-14 bg-white" />
+                <div className="w-[120px] h-14 bg-primary" />
               </div>
-            ))}
-          </div>
-        </Reveal>
 
-        {/* CENTER SPACER */}
-        <div className="relative w-[520px] flex-shrink-0" />
-
-        {/* RIGHT PANEL */}
-        <Reveal>
-          <div className="relative bg-primary flex flex-col justify-center gap-16 py-16 pr-14 pl-20 text-left h-full">
-            {benefits.slice(2, 4).map((benefit, index) => (
-              <div key={index} className="relative">
-                {/* LEFT SIDE CONNECTOR */}
-                <div className="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 flex items-center z-20">
-                  {/* purple extension */}
-                  <div className="w-16 h-14 bg-primary" />
-
-                  {/* white strip */}
-                  <div className="w-4 h-14 bg-white" />
-                </div>
-
-                <h3 className="text-[2.15rem] font-black uppercase leading-tight mb-3">
-                  {benefit.title}
-                </h3>
-
-                <p className="text-white/90 text-sm leading-relaxed font-medium max-w-[260px]">
-                  {benefit.description}
-                </p>
+              {/* BOTTOM connector */}
+              <div className="absolute right-0 top-[65%] translate-x-full -translate-y-1/2 flex items-center pointer-events-none z-30">
+                <div className="w-4 h-14 bg-white" />
+                <div className="w-[120px] h-14 bg-primary" />
               </div>
-            ))}
-          </div>
-        </Reveal>
 
-        {/* CENTER ASTRONAUT */}
-        <DesktopAstronautCenter />
+              {benefits.slice(0, 2).map((benefit, index) => (
+                <div key={index}>
+                  <h3 className="text-2xl font-black leading-tight mb-2">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="text-white/90 text-base leading-relaxed font-medium ml-auto max-w-[220px]">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        {/* CENTER SPACER - contains astronaut */}
+        <div className="relative w-[380px] flex-shrink-0">
+          <DesktopAstronautCenter />
+        </div>
+
+        {/* RIGHT CARD - positioned at right edge */}
+        <div className="relative w-[420px] flex-shrink-0">
+          <Reveal>
+            <div className="relative bg-primary flex flex-col justify-center gap-12 py-12 pl-12 pr-8 text-left h-[390px]">
+              {/* TOP connector */}
+              <div className="absolute left-0 top-[35%] -translate-x-full -translate-y-1/2 flex items-center pointer-events-none z-30">
+                <div className="w-[120px] h-14 bg-primary" />
+                <div className="w-4 h-14 bg-white" />
+              </div>
+
+              {/* BOTTOM connector */}
+              <div className="absolute left-0 top-[65%] -translate-x-full -translate-y-1/2 flex items-center pointer-events-none z-30">
+                <div className="w-[120px] h-14 bg-primary" />
+                <div className="w-4 h-14 bg-white" />
+              </div>
+
+              {benefits.slice(2, 4).map((benefit, index) => (
+                <div key={index}>
+                  <h3 className="text-2xl font-black leading-tight mb-2">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="text-white/90 text-base leading-relaxed font-medium max-w-[220px]">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
