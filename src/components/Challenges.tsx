@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import Reveal from './ui/Reveal';
 import SectionHeading from './ui/SectionHeading';
 import { challenges } from '../data/challenges';
 
