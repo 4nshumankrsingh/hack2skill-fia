@@ -36,8 +36,6 @@ export default function Timeline() {
             {timelineEvents[activeIndex]?.title?.split(' ').slice(0, 2).join(' ')}
           </span>
         </div>
-
-        {/* ── Mobile vertical layout ── */}
         <ol className="flex flex-col relative pl-0 md:hidden">
           <div className="absolute left-[11px] top-2 bottom-2 w-px bg-primary-light/20" />
 
@@ -76,12 +74,6 @@ export default function Timeline() {
                     >
                       {event.title}
                     </h3>
-                    <div className="w-24 h-[3px] border border-primary-light/30 relative overflow-hidden">
-                      <div
-                        className="absolute inset-0 bg-primary-light transition-all duration-700 ease-out"
-                        style={{ width: dotActive ? '100%' : '0%' }}
-                      />
-                    </div>
                     <p className={`text-[13px] font-medium transition-colors duration-300 ${
                       isCurrent ? 'text-white' : 'text-white/50'
                     }`}>
@@ -93,8 +85,6 @@ export default function Timeline() {
             );
           })}
         </ol>
-
-        {/* ── Desktop horizontal layout ── */}
         <ol
           ref={ref}
           onMouseDown={onMouseDown}
@@ -104,7 +94,6 @@ export default function Timeline() {
           {timelineEvents.map((event, index) => {
             const isPast = index < activeIndex;
             const isCurrent = index === activeIndex;
-            const isFuture = index > activeIndex;
 
             return (
               <Reveal key={index} delay={index * 0.08}>
@@ -123,13 +112,6 @@ export default function Timeline() {
                   >
                     {event.title}
                   </h3>
-
-                  <div className="w-full h-[3px] mb-5 border border-primary-light/20 relative overflow-hidden">
-                    <div
-                      className="absolute inset-0 bg-primary-light transition-all duration-700 ease-out"
-                      style={{ width: isFuture ? '0%' : '100%' }}
-                    />
-                  </div>
 
                   <div className="flex items-center w-full mb-4">
                     <div
@@ -159,21 +141,12 @@ export default function Timeline() {
             );
           })}
         </ol>
-
-        {/* ── Active event detail card ── */}
         {activeEvent && (
           <div
             key={activeIndex}
             className="mt-8 px-5 py-4 rounded-xl border border-primary-light/20 bg-primary-light/5 backdrop-blur-sm"
           >
-            <div className="flex items-center gap-3 mb-1">
-              <span className="text-sm font-bold text-primary-light">
-                {activeEvent.title}
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#a855f7] bg-[#a855f7]/10 px-2 py-0.5 rounded-full">
-                Current
-              </span>
-            </div>
+            <p className="text-sm font-bold text-primary-light mb-1">{activeEvent.title}</p>
             <p className="text-sm text-white/60">{activeEvent.date}</p>
           </div>
         )}
