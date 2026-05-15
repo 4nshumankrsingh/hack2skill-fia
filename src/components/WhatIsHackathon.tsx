@@ -1,44 +1,124 @@
+import { useState } from 'react';
 import Reveal from './ui/Reveal';
 
 function CrossIcon() {
   return (
     <svg
-      width="17"
-      height="17"
-      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      viewBox="0 0 17 17"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute z-40 pointer-events-none"
+      style={{ display: 'block' }}
     >
       <path
-        d="M12 4V20M4 12H20"
+        d="M8.44446 0.22168C8.69049 0.220525 8.90703 0.30693 9.07825 0.480469C9.24799 0.652582 9.33313 0.867719 9.33313 1.11133V7.55566H15.7775C16.0227 7.55566 16.2392 7.6412 16.4103 7.81348C16.5804 7.98496 16.6659 8.20016 16.6671 8.44434C16.6683 8.69037 16.5819 8.90691 16.4083 9.07812C16.2362 9.24786 16.0211 9.33301 15.7775 9.33301H9.33313V15.7773C9.33313 16.0226 9.24759 16.2391 9.07532 16.4102C8.90383 16.5803 8.68864 16.6658 8.44446 16.667C8.19843 16.6681 7.98188 16.5817 7.81067 16.4082C7.64093 16.2361 7.55579 16.021 7.55579 15.7773V9.33301H1.11145C0.866181 9.33301 0.649716 9.24747 0.478638 9.0752C0.308481 8.90371 0.223014 8.68852 0.221802 8.44434C0.220647 8.1983 0.307052 7.98176 0.480591 7.81055C0.652705 7.64081 0.867841 7.55566 1.11145 7.55566H7.55579V1.11133C7.55579 0.866059 7.64132 0.649594 7.8136 0.478516C7.98508 0.308359 8.20028 0.222892 8.44446 0.22168Z"
+        fill="white"
         stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeWidth="0.444444"
       />
     </svg>
   );
 }
 
-function BracketWrapper({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function BracketWrapper({ children }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative inline-flex items-center justify-center group ${className}`}>
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none text-white"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      >
-        <path d="M 12 0 L 0 0 L 0 12" />
-        <path d="M 0 88 L 0 100 L 12 100" />
-        <path d="M 88 0 L 100 0 L 100 12" />
-        <path d="M 100 88 L 100 100 L 88 100" />
-      </svg>
+    <div className="relative inline-flex items-center justify-center p-[6px]">
+      <span className="absolute top-0 left-0 w-3 h-3 border-t-[3px] border-l-[3px] border-white z-10 pointer-events-none" />
+      <span className="absolute top-0 right-0 w-3 h-3 border-t-[3px] border-r-[3px] border-white z-10 pointer-events-none" />
+      <span className="absolute bottom-0 left-0 w-3 h-3 border-b-[3px] border-l-[3px] border-white z-10 pointer-events-none" />
+      <span className="absolute bottom-0 right-0 w-3 h-3 border-b-[3px] border-r-[3px] border-white z-10 pointer-events-none" />
       {children}
+    </div>
+  );
+}
+
+interface HoverImageProps {
+  src: string;
+  alt: string;
+  style: React.CSSProperties;
+  zIndex: number;
+  label: string;
+}
+
+function HoverImage({ src, alt, style, zIndex, label }: HoverImageProps) {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    setMousePos({ x, y });
+  };
+
+  const tiltX = hovered ? mousePos.y * -8 : 0;
+  const tiltY = hovered ? mousePos.x * 8 : 0;
+  const glowX = hovered ? 50 + mousePos.x * 40 : 50;
+  const glowY = hovered ? 50 + mousePos.y * 40 : 50;
+
+  return (
+    <div
+      className="absolute cursor-pointer border border-white/5 bg-[#111]"
+      style={{
+        ...style,
+        zIndex: hovered ? 50 : zIndex,
+        overflow: 'hidden',
+        transform: hovered
+          ? `scale(1.06) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`
+          : 'scale(1) rotateX(0deg) rotateY(0deg)',
+        transition: hovered
+          ? 'transform 0.1s ease-out, box-shadow 0.2s ease-out'
+          : 'transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease-out',
+        boxShadow: hovered
+          ? '0 20px 60px rgba(124,58,237,0.45), 0 8px 24px rgba(0,0,0,0.6)'
+          : '0 0 0 transparent',
+        transformStyle: 'preserve-3d',
+        perspective: '600px',
+        willChange: 'transform',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setMousePos({ x: 0, y: 0 }); }}
+      onMouseMove={handleMouseMove}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-full object-cover"
+        style={{
+          opacity: hovered ? 1 : 0.8,
+          transition: 'opacity 0.3s ease, filter 0.3s ease',
+          filter: hovered ? 'saturate(1.15) contrast(1.05)' : 'saturate(1) contrast(1)',
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.12) 0%, transparent 65%)`,
+          opacity: hovered ? 1 : 0,
+          transition: hovered ? 'opacity 0.2s ease' : 'opacity 0.4s ease',
+          mixBlendMode: 'screen',
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 px-3 py-2 flex items-center gap-2"
+        style={{
+          background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)',
+          transform: hovered ? 'translateY(0)' : 'translateY(100%)',
+          transition: 'transform 0.35s cubic-bezier(0.23,1,0.32,1)',
+        }}
+      >
+        <span className="text-white/90 text-xs font-medium tracking-wide uppercase">{label}</span>
+      </div>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          boxShadow: 'inset 0 0 0 1px rgba(167,139,250,0.5)',
+          opacity: hovered ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+        }}
+      />
     </div>
   );
 }
@@ -46,7 +126,6 @@ function BracketWrapper({ children, className = '' }: { children: React.ReactNod
 export default function WhatIsHackathon() {
   return (
     <section id="what-is" className="relative py-24 px-6 bg-transparent z-10 overflow-hidden">
-      {/* Left glow */}
       <div
         className="absolute top-1/3 left-0 -translate-y-1/2 -translate-x-1/2 w-[500px] h-[600px] rounded-full pointer-events-none opacity-30"
         style={{
@@ -54,7 +133,6 @@ export default function WhatIsHackathon() {
           filter: 'blur(60px)',
         }}
       />
-      {/* Right glow */}
       <div
         className="absolute top-2/3 right-0 -translate-y-1/2 translate-x-1/2 w-[400px] h-[500px] rounded-full pointer-events-none opacity-25"
         style={{
@@ -113,53 +191,59 @@ export default function WhatIsHackathon() {
           </div>
         </Reveal>
 
-        {/* Gallery — Absolute positioned collage */}
+        {/* Gallery */}
         <Reveal delay={0.2}>
-          <div className="relative mx-auto" style={{ width: '699px', height: '920px' }}>
-            {/* 1. typing.jpg — top:109, left:78 */}
-            <div
-              className="absolute overflow-hidden cursor-pointer z-20 transition-all duration-300 hover:scale-105 hover:z-50 hover:brightness-125 hover:shadow-2xl border border-white/5 bg-[#111]"
+          <div className="relative mx-auto" style={{ width: '699px', height: '920px', perspective: '1000px' }}>
+            {/* 1. typing.jpg */}
+            <HoverImage
+              src="/hackathon/typing.jpg"
+              alt="Typing on laptop"
+              label="Build"
+              zIndex={20}
               style={{ top: 109, left: 78, width: 146, height: 268 }}
-            >
-              <img src="/hackathon/typing.jpg" alt="Typing on laptop" loading="lazy" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -bottom-2 -left-2"><CrossIcon /></div>
-              <div className="absolute -bottom-2 -right-2"><CrossIcon /></div>
-            </div>
+            />
+            <div className="absolute z-50 pointer-events-none" style={{ top: 367, left: 68 }}><CrossIcon /></div>
+            <div className="absolute z-50 pointer-events-none" style={{ top: 367, left: 214 }}><CrossIcon /></div>
 
-            {/* 2. globe.jpg — top:0, left:375 */}
-            <div
-              className="absolute overflow-hidden cursor-pointer z-10 transition-all duration-300 hover:scale-105 hover:z-50 hover:brightness-125 hover:shadow-2xl border border-white/5 bg-[#111]"
+            {/* 2. globe.jpg */}
+            <HoverImage
+              src="/hackathon/globe.jpg"
+              alt="Globe"
+              label="Connect"
+              zIndex={10}
               style={{ top: 0, left: 375, width: 324, height: 377 }}
-            >
-              <img src="/hackathon/globe.jpg" alt="Globe" loading="lazy" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -bottom-2 -left-2"><CrossIcon /></div>
-            </div>
+            />
+            <div className="absolute z-50 pointer-events-none" style={{ top: 367, left: 365 }}><CrossIcon /></div>
 
-            {/* 3. VR.jpg — top:377, left:0 */}
-            <div
-              className="absolute overflow-hidden cursor-pointer z-30 transition-all duration-300 hover:scale-105 hover:z-50 hover:brightness-125 hover:shadow-2xl border border-white/5 bg-[#111]"
+            {/* 3. VR.jpg */}
+            <HoverImage
+              src="/hackathon/VR.jpg"
+              alt="VR headset"
+              label="Innovate"
+              zIndex={30}
               style={{ top: 377, left: 0, width: 375, height: 223 }}
-            >
-              <img src="/hackathon/VR.jpg" alt="VR headset" loading="lazy" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -bottom-2 -right-2"><CrossIcon /></div>
-            </div>
+            />
+            <div className="absolute z-50 pointer-events-none" style={{ top: 590, left: 365 }}><CrossIcon /></div>
 
-            {/* 4. presentation.jpg — top:600, left:78 */}
-            <div
-              className="absolute overflow-hidden cursor-pointer z-40 transition-all duration-300 hover:scale-105 hover:z-50 hover:brightness-125 hover:shadow-2xl border border-white/5 bg-[#111]"
+            {/* 4. presentation.jpg */}
+            <HoverImage
+              src="/hackathon/presentation.jpg"
+              alt="Presentation"
+              label="Present"
+              zIndex={40}
               style={{ top: 600, left: 78, width: 297, height: 320 }}
-            >
-              <img src="/hackathon/presentation.jpg" alt="Presentation" loading="lazy" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
-            </div>
+            />
+            <div className="absolute z-50 pointer-events-none" style={{ top: 590, left: 68 }}><CrossIcon /></div>
 
-            {/* 5. students.jpg — top:600, left:375 */}
-            <div
-              className="absolute overflow-hidden cursor-pointer z-20 transition-all duration-300 hover:scale-105 hover:z-50 hover:brightness-125 hover:shadow-2xl border border-white/5 bg-[#111]"
+            {/* 5. students.jpg */}
+            <HoverImage
+              src="/hackathon/students.jpg"
+              alt="Students"
+              label="Collaborate"
+              zIndex={20}
               style={{ top: 600, left: 375, width: 324, height: 188 }}
-            >
-              <img src="/hackathon/students.jpg" alt="Students" loading="lazy" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -bottom-2 -left-2"><CrossIcon /></div>
-            </div>
+            />
+            <div className="absolute z-50 pointer-events-none" style={{ top: 778, left: 365 }}><CrossIcon /></div>
           </div>
         </Reveal>
       </div>
